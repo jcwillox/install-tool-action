@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "editor.linkedEditing": true,
+  "editor.renderWhitespace": "trailing",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "files.associations": {
+    "**/.github/workflows/*.yaml": "github-actions-workflow"
+  },
+  "[javascript][javascriptreact][typescript][typescriptreact][json][jsonc][yaml][html][markdown][postcss][css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
