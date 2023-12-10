@@ -1,0 +1,89 @@
+name: "CI"
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  lint:
+    name: "Lint"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout the repository"
+        uses: actions/checkout@v4
+
+      - name: "Setup pnpm"
+        uses: pnpm/action-setup@v2
+
+      - name: "Setup node"
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+          cache: "pnpm"
+
+      - name: "Install dependencies"
+        run: pnpm install
+
+      - name: "Check format"
+        run: pnpm run format:check
+
+  build:
+    name: "Build"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout the repository"
+        uses: actions/checkout@v4
+
+      - name: "Setup pnpm"
+        uses: pnpm/action-setup@v2
+
+      - name: "Setup node"
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+          cache: "pnpm"
+
+      - name: "Install dependencies"
+        run: pnpm install
+
+      - name: "Run Build"
+        run: pnpm run build
+
+  test-action:
+    name: "Test Action"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout the repository"
+        uses: actions/checkout@v4
+
+      - name: "Test Action"
+        id: test-action1
+        uses: ./
+        with:
+          preset: "cloud-sql-proxy"
+
+      - name: "Show Outputs"
+        run: |
+          echo "path=${{ steps.test-action1.outputs.path }}"
+          echo "version=${{ steps.test-action1.outputs.version }}"
+
+      - name: "Test Action"
+        id: test-action2
+        uses: ./
+        with:
+          preset: "infisical-cli"
+
+      - name: "Show Outputs"
+        run: |
+          echo "path=${{ steps.test-action2.outputs.path }}"
+          echo "version=${{ steps.test-action2.outputs.version }}"
+
+      - name: "Show Versions"
+        run: |
+          cloud-sql-proxy --version
+          infisical --version
