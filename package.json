@@ -1,0 +1,43 @@
+{
+  "name": "action-install-tool",
+  "version": "0.0.0-dev",
+  "description": "GitHub Actions TypeScript template",
+  "author": "Josh Willox <joshwillox@gmail.com> (https://github.com/jcwillox/)",
+  "license": "MIT",
+  "private": true,
+  "repository": "jcwillox/action-install-tool",
+  "keywords": [
+    "actions",
+    "install",
+    "setup",
+    "tool"
+  ],
+  "scripts": {
+    "dev": "pnpm build --watch",
+    "build": "tsup src/index.ts --treeshake --minify --clean",
+    "typecheck": "tsc",
+    "lint": "eslint . --cache --max-warnings=0 --ext js,cjs,mjs,jsx,ts,tsx",
+    "lint:fix": "pnpm run lint --fix",
+    "format": "prettier --cache --write .",
+    "format:check": "prettier --cache --check ."
+  },
+  "devDependencies": {
+    "@actions/core": "1.10.1",
+    "@actions/exec": "1.1.1",
+    "@actions/http-client": "2.0.1",
+    "@actions/tool-cache": "2.0.1",
+    "@types/node": "20.10.4",
+    "prettier": "3.1.1",
+    "radash": "11.0.0",
+    "tsup": "8.0.1",
+    "typescript": "5.3.3",
+    "vitest": "1.0.4"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "packageManager": "pnpm@8.11.0",
+  "engines": {
+    "node": "^18 || ^20"
+  }
+}

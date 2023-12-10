@@ -1,0 +1,40 @@
+name: "Install Tool"
+description: "Provide a description here"
+branding:
+  icon: "download-cloud"
+  color: "yellow"
+
+inputs:
+  preset:
+    description: "Preset to use for the tool"
+  version:
+    description: "Version of the tool to install"
+    default: "latest"
+  repo:
+    description: "Repository to use for defaults"
+  version_url:
+    description: "URL to fetch the version from"
+  version_regex:
+    description: "Regex to extract the version from the version_url"
+    default: "(?<version>[\\d.]+)"
+  download_url:
+    description: "URL to download the tool from"
+  download_name:
+    description: "Rename the downloaded file, does not work with extraction"
+  bin_path:
+    description: "Sub-path of downloaded archive to add to PATH"
+  cache:
+    description: "Disable use of the tool cache"
+    default: "true"
+  token:
+    description: "Token to use for GitHub API requests"
+
+outputs:
+  path:
+    description: "Path to the tool"
+  version:
+    description: "Version of the tool"
+
+runs:
+  using: node20
+  main: dist/index.js
