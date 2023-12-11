@@ -25,24 +25,25 @@ jobs:
   publish:
     name: "Publish"
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
     steps:
       - name: "Checkout the repository"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: "Setup pnpm"
         uses: pnpm/action-setup@v2
 
       - name: "Setup node"
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: package.json
           cache: "pnpm"
-
-      - name: "Install dependencies"
-        run: pnpm install
-
-      - name: "Run Build"
-        run: pnpm run build
 
       - name: "Release Package 📦"
         run: pnpm dlx @jcwillox/semantic-release-config
