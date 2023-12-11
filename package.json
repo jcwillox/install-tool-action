@@ -1,11 +1,10 @@
 {
-  "name": "action-install-tool",
+  "name": "install-tool-action",
   "version": "0.0.0-dev",
-  "description": "GitHub Actions TypeScript template",
   "author": "Josh Willox <joshwillox@gmail.com> (https://github.com/jcwillox/)",
   "license": "MIT",
   "private": true,
-  "repository": "jcwillox/action-install-tool",
+  "repository": "jcwillox/install-tool-action",
   "keywords": [
     "actions",
     "install",
