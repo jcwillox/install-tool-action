@@ -41,7 +41,7 @@ export async function downloadTool(config: Config) {
   if (!config.version) throw new Error("Version missing");
 
   const toolName = config.preset || config.repo || config.id;
-  if (!toolName) {
+  if (config.cache && !toolName) {
     config.cache = false;
     core.warning("Tool name missing, disabling cache");
   }
@@ -49,7 +49,13 @@ export async function downloadTool(config: Config) {
   // check cache
   if (config.cache) {
     const toolPath = tc.find(toolName!, config.version);
-    if (toolPath) return toolPath;
+    if (toolPath) {
+      core.debug("cache hit: " + toolName + "@" + config.version);
+      return toolPath;
+    }
+    core.debug("cache miss: " + toolName + "@" + config.version);
+    const versions = tc.findAllVersions(toolName!).join(", ");
+    if (versions) core.debug("available versions: " + versions);
   }
 
   // download file
