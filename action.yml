@@ -1,5 +1,6 @@
 name: "Install Tool"
-description: "Provide a description here"
+description: "Install any tool or binary with full cache, dynamic latest version, easy to configure and has presets."
+
 branding:
   icon: "download-cloud"
   color: "yellow"
@@ -10,17 +11,21 @@ inputs:
   version:
     description: "Version of the tool to install"
     default: "latest"
+  id:
+    description: "Id to use for tool cache when not using `preset` or `repo`"
   repo:
     description: "Repository to use for defaults"
   version_url:
-    description: "URL to fetch the version from"
+    description: "URL to fetch the latest version from"
+  version_path:
+    description: "JSON path like expression to extract version from the response"
   version_regex:
-    description: "Regex to extract the version from the version_url"
+    description: "Regex to extract the version from the response"
     default: "(?<version>[\\d.]+)"
   download_url:
     description: "URL to download the tool from"
   download_name:
-    description: "Rename the downloaded file, does not work with extraction"
+    description: "Rename the downloaded file, does not work with archives"
   bin_path:
     description: "Sub-path of downloaded archive to add to PATH"
   cache:

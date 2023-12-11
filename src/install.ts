@@ -40,7 +40,7 @@ export async function downloadTool(config: Config) {
   if (!config.downloadUrl) throw new Error("Download URL missing");
   if (!config.version) throw new Error("Version missing");
 
-  const toolName = config.preset || config.repo;
+  const toolName = config.preset || config.repo || config.id;
   if (!toolName) {
     config.cache = false;
     core.warning("Tool name missing, disabling cache");

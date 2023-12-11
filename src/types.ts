@@ -1,4 +1,5 @@
 export type Config = {
+  id?: string;
   repo?: string;
   version: string;
   versionUrl?: string;

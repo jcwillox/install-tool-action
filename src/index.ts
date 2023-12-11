@@ -19,6 +19,7 @@ export async function main() {
 
     // load config
     let config: Config = {
+      id: core.getInput("id"),
       preset: core.getInput("preset"),
       repo: core.getInput("repo"),
       version: core.getInput("version"),
