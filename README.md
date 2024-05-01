@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/github/license/jcwillox/install-tool-action?style=flat-square)](https://github.com/jcwillox/install-tool-action/blob/main/LICENSE)
 [![Version](https://img.shields.io/github/v/release/jcwillox/install-tool-action?style=flat-square)](https://github.com/jcwillox/install-tool-action/releases)
-[![Size](https://img.badgesize.io/jcwillox/install-tool-action/main/dist/index.js?style=flat-square)](dist/index.js)
+[![Size](https://img.shields.io/github/size/jcwillox/install-tool-action/dist%2Findex.js?branch=main&style=flat-square)](dist/index.js)
 [![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 Install any tool or binary with full cache, dynamic latest version, easy to configure and has presets.
