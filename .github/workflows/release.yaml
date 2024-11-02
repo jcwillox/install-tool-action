@@ -37,7 +37,7 @@ jobs:
           fetch-depth: 0
 
       - name: "Setup pnpm"
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
 
       - name: "Setup node"
         uses: actions/setup-node@v4
@@ -45,9 +45,17 @@ jobs:
           node-version-file: package.json
           cache: "pnpm"
 
+      - name: "Install dependencies"
+        run: pnpm install
+
       - name: "Release Package 📦"
         run: pnpm dlx @jcwillox/semantic-release-config
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SEMANTIC_RELEASE_GITHUB_DRAFT: ${{ inputs.draft }}
           SEMANTIC_RELEASE_FORCE_RELEASE: ${{ inputs.release_type }}
+          SEMANTIC_RELEASE_CMD_PREPARE: "pnpm run build"
+          SEMANTIC_RELEASE_CMD_SUCCESS: |
+            git tag -f "v${nextRelease.version.split('.')[0]}"
+            git push origin "v${nextRelease.version.split('.')[0]}" --tags --force
+          SEMANTIC_RELEASE_GIT_ASSETS: "dist/index.js"
