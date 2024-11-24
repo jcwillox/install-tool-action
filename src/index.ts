@@ -4,8 +4,8 @@ import path from "node:path";
 import * as core from "@actions/core";
 import { shake, template } from "radash";
 import { downloadTool, getVersion } from "./install";
-import { Config } from "./types";
 import presets from "./presets";
+import type { Config } from "./types";
 
 export async function main() {
   try {
@@ -31,7 +31,7 @@ export async function main() {
       cache: core.getBooleanInput("cache"),
     };
 
-    core.debug("loaded config: " + JSON.stringify(config));
+    core.debug(`loaded config: ${JSON.stringify(config)}`);
 
     // if preset is set, load preset config
     if (config.preset) {
@@ -50,10 +50,9 @@ export async function main() {
     if (!config.versionUrl && !config.versionPath && config.repo)
       config.versionPath = "tag_name";
     if (!config.versionUrl && config.repo)
-      config.versionUrl =
-        "https://api.github.com/repos/" + config.repo + "/releases/latest";
+      config.versionUrl = `https://api.github.com/repos/${config.repo}/releases/latest`;
 
-    core.debug("resolved config: " + JSON.stringify(config));
+    core.debug(`resolved config: ${JSON.stringify(config)}`);
 
     if (!config.downloadUrl) {
       throw new Error("Download URL missing");
@@ -64,7 +63,7 @@ export async function main() {
       const version = await getVersion(config);
       if (!version) throw new Error("Version not found");
       config.version = version;
-      core.debug("resolved version: " + config.version);
+      core.debug(`resolved version: ${config.version}`);
     }
 
     // template download url
@@ -73,22 +72,21 @@ export async function main() {
       ...templateArgs,
     });
     if (config.downloadUrl.startsWith("/") && config.repo)
-      config.downloadUrl =
-        "https://github.com/" + config.repo + config.downloadUrl;
+      config.downloadUrl = `https://github.com/${config.repo}${config.downloadUrl}`;
 
-    core.debug("templated download url: " + config.downloadUrl);
+    core.debug(`templated download url: ${config.downloadUrl}`);
 
     // download or pull from cache
     const toolPath = await downloadTool(config);
 
-    if (config.binPath != "") {
+    if (config.binPath !== "") {
       config.binPath = template(config.binPath, {
         ...config,
         ...templateArgs,
       });
     }
 
-    core.debug("cached path: " + toolPath);
+    core.debug(`cached path: ${toolPath}`);
     core.addPath(path.join(toolPath, config.binPath));
     core.info(`Successfully installed version ${config.version}`);
 
