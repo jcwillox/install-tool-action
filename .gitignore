@@ -42,4 +42,4 @@ lerna-debug.log*
 .eslintcache
 .turbo
 .build_cache
-temp
+.tmp/
