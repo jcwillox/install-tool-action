@@ -62,9 +62,10 @@ Install any tool or binary with full cache, dynamic latest version, easy to conf
 ## Presets
 
 | Name              | URL                                                    |
-| ----------------- | ------------------------------------------------------ |
+|-------------------|--------------------------------------------------------|
 | `infisical-cli`   | https://github.com/Infisical/infisical                 |
 | `cloud-sql-proxy` | https://github.com/GoogleCloudPlatform/cloud-sql-proxy |
+| `github-cli`      | https://github.com/cli/cli                             |
 
 ## Custom Config
 
