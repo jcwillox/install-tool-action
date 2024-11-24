@@ -10,6 +10,8 @@
     "dev": "pnpm build --watch",
     "build": "tsup src/index.ts --treeshake --minify --clean",
     "typecheck": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "biome lint",
     "lint:fix": "biome lint -w",
     "format": "biome format --write",
