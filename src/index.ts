@@ -81,6 +81,13 @@ export async function main() {
     // download or pull from cache
     const toolPath = await downloadTool(config);
 
+    if (config.binPath != "") {
+      config.binPath = template(config.binPath, {
+        ...config,
+        ...templateArgs,
+      });
+    }
+
     core.debug("cached path: " + toolPath);
     core.addPath(path.join(toolPath, config.binPath));
     core.info(`Successfully installed version ${config.version}`);
