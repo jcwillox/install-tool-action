@@ -97,5 +97,3 @@ export async function main() {
     if (error instanceof Error) core.setFailed(error.message);
   }
 }
-
-main();
