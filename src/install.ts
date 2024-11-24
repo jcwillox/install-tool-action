@@ -1,9 +1,9 @@
-import { Config } from "./types";
-import { get } from "radash";
-import * as core from "@actions/core";
-import * as tc from "@actions/tool-cache";
 import path from "node:path";
+import * as core from "@actions/core";
 import { exec } from "@actions/exec";
+import * as tc from "@actions/tool-cache";
+import { get } from "radash";
+import type { Config } from "./types";
 
 export async function getVersion(config: Config) {
   if (!config.versionUrl) throw new Error("Version URL missing");
@@ -47,20 +47,20 @@ export async function downloadTool(config: Config) {
   }
 
   // check cache
-  if (config.cache) {
-    const toolPath = tc.find(toolName!, config.version);
+  if (config.cache && toolName) {
+    const toolPath = tc.find(toolName, config.version);
     if (toolPath) {
-      core.debug("cache hit: " + toolName + "@" + config.version);
+      core.debug(`cache hit: ${toolName}@${config.version}`);
       return toolPath;
     }
-    core.debug("cache miss: " + toolName + "@" + config.version);
-    const versions = tc.findAllVersions(toolName!).join(", ");
-    if (versions) core.debug("available versions: " + versions);
+    core.debug(`cache miss: ${toolName}@${config.version}`);
+    const versions = tc.findAllVersions(toolName).join(", ");
+    if (versions) core.debug(`available versions: ${versions}`);
   }
 
   // download file
-  let downloadPath = await tc.downloadTool(config.downloadUrl);
-  core.debug("downloaded path: " + downloadPath);
+  const downloadPath = await tc.downloadTool(config.downloadUrl);
+  core.debug(`downloaded path: ${downloadPath}`);
 
   // handle extracting downloaded file
   let extractedPath: string | undefined;
@@ -73,20 +73,20 @@ export async function downloadTool(config: Config) {
   } else if (config.downloadUrl.endsWith(".pkg")) {
     extractedPath = await tc.extractXar(downloadPath);
   }
-  core.debug("extracted path: " + extractedPath);
+  core.debug(`extracted path: ${extractedPath}`);
 
   // ensure binaries are executable
   if (!extractedPath && process.platform !== "win32")
     await exec("chmod", ["+x", downloadPath]);
 
   // cache downloaded or extracted path
-  if (config.cache)
+  if (config.cache && toolName)
     return extractedPath
-      ? await tc.cacheDir(extractedPath, toolName!, config.version)
+      ? await tc.cacheDir(extractedPath, toolName, config.version)
       : await tc.cacheFile(
           downloadPath,
           config.downloadName || path.basename(config.downloadUrl),
-          toolName!,
+          toolName,
           config.version,
         );
   return extractedPath || downloadPath;

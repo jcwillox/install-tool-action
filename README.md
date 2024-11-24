@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/jcwillox/install-tool-action?style=flat-square)](https://github.com/jcwillox/install-tool-action/blob/main/LICENSE)
 [![Version](https://img.shields.io/github/v/release/jcwillox/install-tool-action?style=flat-square)](https://github.com/jcwillox/install-tool-action/releases)
 [![Size](https://img.shields.io/github/size/jcwillox/install-tool-action/dist%2Findex.js?branch=main&style=flat-square)](dist/index.js)
-[![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Code style](https://img.shields.io/badge/code_style-biome-60a5fa?style=flat-square)](https://biomejs.dev)
 
 Install any tool or binary with full cache, dynamic latest version, easy to configure and has presets.
 

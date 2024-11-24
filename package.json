@@ -5,28 +5,23 @@
   "license": "MIT",
   "private": true,
   "repository": "jcwillox/install-tool-action",
-  "keywords": [
-    "actions",
-    "install",
-    "setup",
-    "tool"
-  ],
+  "keywords": ["actions", "install", "setup", "tool"],
   "scripts": {
     "dev": "pnpm build --watch",
     "build": "tsup src/index.ts --treeshake --minify --clean",
     "typecheck": "tsc",
-    "lint": "eslint . --cache --max-warnings=0 --ext js,cjs,mjs,jsx,ts,tsx",
-    "lint:fix": "pnpm run lint --fix",
-    "format": "prettier --cache --write .",
-    "format:check": "prettier --cache --check ."
+    "lint": "biome lint",
+    "lint:fix": "biome lint -w",
+    "format": "biome format --write",
+    "format:check": "biome format"
   },
   "devDependencies": {
     "@actions/core": "1.11.1",
     "@actions/exec": "1.1.1",
     "@actions/http-client": "2.2.3",
     "@actions/tool-cache": "2.0.1",
+    "@biomejs/biome": "1.9.4",
     "@types/node": "22.8.2",
-    "prettier": "3.3.3",
     "radash": "12.1.0",
     "tsup": "8.3.5",
     "typescript": "5.6.3",

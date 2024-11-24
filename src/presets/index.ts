@@ -1,4 +1,4 @@
-import { Config } from "../types";
+import type { Config } from "../types";
 
 const presets: Record<string, Partial<Config>> = {
   "infisical-cli": {
