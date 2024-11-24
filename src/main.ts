@@ -58,6 +58,13 @@ export async function main() {
       throw new Error("Download URL missing");
     }
 
+    if (config.downloadName) {
+      config.downloadName = template(config.downloadName, {
+        ...config,
+        ...templateArgs,
+      });
+    }
+
     // fetch latest version if not fixed
     if (config.version === "latest") {
       const version = await getVersion(config);
