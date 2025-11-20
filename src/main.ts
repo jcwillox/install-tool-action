@@ -25,6 +25,7 @@ export async function main() {
       version: core.getInput("version"),
       versionUrl: core.getInput("version_url"),
       versionRegex: core.getInput("version_regex"),
+      versionPath: core.getInput("version_path"),
       downloadUrl: core.getInput("download_url"),
       downloadName: core.getInput("download_name"),
       binPath: core.getInput("bin_path"),
