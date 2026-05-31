@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@actions/core": "1.11.1",
-    "@actions/exec": "1.1.1",
+    "@actions/exec": "3.0.0",
     "@actions/http-client": "2.2.3",
     "@actions/tool-cache": "2.0.1",
     "@biomejs/biome": "1.9.4",
