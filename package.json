@@ -23,7 +23,7 @@
     "@actions/http-client": "2.2.3",
     "@actions/tool-cache": "2.0.1",
     "@biomejs/biome": "1.9.4",
-    "@types/node": "22.8.2",
+    "@types/node": "24.13.3",
     "radash": "12.1.0",
     "tsup": "8.3.5",
     "typescript": "5.6.3",
